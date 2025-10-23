@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 248 248 255;
+  --foreground: 15 23 42;
+  --card: 255 255 255;
+  --card-foreground: 15 23 42;
+  --popover: 255 255 255;
+  --popover-foreground: 15 23 42;
+  --primary: 79 70 229;
+  --primary-foreground: 241 245 249;
+  --secondary: 14 165 233;
+  --secondary-foreground: 15 23 42;
+  --muted: 241 245 249;
+  --muted-foreground: 71 85 105;
+  --accent: 236 72 153;
+  --accent-foreground: 15 23 42;
+  --border: 226 232 240;
+  --input: 226 232 240;
+  --ring: 79 70 229;
+}
+
+.dark {
+  --background: 8 15 31;
+  --foreground: 226 232 240;
+  --card: 15 23 42;
+  --card-foreground: 226 232 240;
+  --popover: 15 23 42;
+  --popover-foreground: 226 232 240;
+  --primary: 129 140 248;
+  --primary-foreground: 15 23 42;
+  --secondary: 45 212 191;
+  --secondary-foreground: 15 23 42;
+  --muted: 30 41 59;
+  --muted-foreground: 148 163 184;
+  --accent: 236 72 153;
+  --accent-foreground: 15 23 42;
+  --border: 51 65 85;
+  --input: 51 65 85;
+  --ring: 129 140 248;
+}
+
+body {
+  @apply min-h-screen bg-slate-50 text-slate-900 antialiased transition-colors duration-300 ease-out dark:bg-slate-950 dark:text-slate-100;
+  background-image: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.15), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(236, 72, 153, 0.12), transparent 55%);
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.25);
+}
+
+[data-glow-card] {
+  @apply relative overflow-hidden rounded-3xl border border-slate-200 bg-white/80 shadow-subtle backdrop-blur dark:border-slate-800/60 dark:bg-slate-900/70 dark:shadow-[0_18px_45px_-25px_rgba(15,23,42,0.75)];
+}
+
+[data-glow-card]::after {
+  content: "";
+  position: absolute;
+  inset: -120% -60% 20%;
+  background: conic-gradient(from 180deg at 50% 50%, rgba(129, 140, 248, 0.3), rgba(56, 189, 248, 0.15), rgba(236, 72, 153, 0.2), rgba(129, 140, 248, 0.3));
+  filter: blur(60px);
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.45s ease;
+  z-index: 0;
+}
+
+[data-glow-card]:hover::after {
+  opacity: 1;
+  transform: translate3d(0, -6%, 0);
+}
+
+[data-glow-card] > * {
+  position: relative;
+  z-index: 10;
+}
